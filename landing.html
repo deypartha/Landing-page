@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StrideLab Shoe Store</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap");
+
+      :root {
+        --bg: #f7f5ef;
+        --ink: #131313;
+        --soft-ink: #4d4d4d;
+        --panel: #ffffff;
+        --accent: #ff5a1f;
+        --accent-deep: #d94410;
+        --line: #e8dfd2;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", "Trebuchet MS", sans-serif;
+        background:
+          radial-gradient(circle at 12% 8%, #ffd7c8 0%, transparent 28%),
+          radial-gradient(circle at 90% 0%, #fff2b8 0%, transparent 24%),
+          var(--bg);
+        color: var(--ink);
+        min-height: 100vh;
+        padding: 28px;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: linear-gradient(160deg, #fffefa 0%, #fff 72%);
+        box-shadow: 0 24px 70px rgba(33, 23, 8, 0.12);
+        overflow: hidden;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 28px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        font-family: "Bebas Neue", "Arial Narrow", sans-serif;
+        font-size: 2rem;
+        letter-spacing: 1px;
+      }
+
+      .nav {
+        display: flex;
+        gap: 24px;
+      }
+
+      .nav a {
+        text-decoration: none;
+        color: var(--soft-ink);
+        font-weight: 700;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 20px;
+        padding: 42px 28px 30px;
+      }
+
+      .hero-copy {
+        animation: rise 0.7s ease forwards;
+      }
+
+      .kicker {
+        display: inline-block;
+        margin-bottom: 16px;
+        border: 1px solid #f6bca9;
+        border-radius: 100px;
+        padding: 7px 14px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: #9f370d;
+        background: #fff3ed;
+      }
+
+      h1 {
+        font-family: "Bebas Neue", "Arial Narrow", sans-serif;
+        font-size: clamp(2.4rem, 7vw, 5rem);
+        line-height: 0.95;
+        letter-spacing: 0.6px;
+        margin-bottom: 16px;
+      }
+
+      .hero p {
+        color: var(--soft-ink);
+        line-height: 1.7;
+        max-width: 52ch;
+      }
+
+      .hero-actions {
+        margin-top: 24px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        border-radius: 12px;
+        padding: 12px 20px;
+        font-weight: 800;
+        transition:
+          transform 0.2s ease,
+          background-color 0.2s ease;
+      }
+
+      .btn.primary {
+        background: var(--accent);
+        color: #fff;
+      }
+
+      .btn.primary:hover {
+        background: var(--accent-deep);
+        transform: translateY(-2px);
+      }
+
+      .btn.secondary {
+        border: 1px solid var(--line);
+        color: var(--ink);
+        background: #fff;
+      }
+
+      .hero-card {
+        border-radius: 18px;
+        padding: 22px;
+        background: linear-gradient(145deg, #161616, #2b2b2b);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        min-height: 270px;
+        animation: rise 0.8s ease forwards;
+      }
+
+      .hero-card::after {
+        content: "RUN";
+        position: absolute;
+        right: -18px;
+        bottom: -34px;
+        font-family: "Bebas Neue", "Arial Narrow", sans-serif;
+        font-size: 9rem;
+        color: rgba(255, 255, 255, 0.08);
+      }
+
+      .hero-card h2 {
+        font-size: 1.35rem;
+        margin-bottom: 10px;
+      }
+
+      .hero-card p {
+        color: #d8d8d8;
+      }
+
+      .price {
+        margin-top: 20px;
+        display: inline-block;
+        font-size: 1.5rem;
+        font-weight: 800;
+      }
+
+      .products {
+        padding: 10px 28px 34px;
+      }
+
+      .products h3 {
+        font-size: 1.35rem;
+        margin-bottom: 14px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        background: #fffcf7;
+        border-radius: 14px;
+        padding: 16px;
+        animation: rise 0.8s ease forwards;
+      }
+
+      .card:nth-child(2) {
+        animation-delay: 0.1s;
+      }
+
+      .card:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+
+      .card strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .card span {
+        color: var(--soft-ink);
+        font-size: 0.9rem;
+      }
+
+      .promo {
+        margin: 0 28px 28px;
+        border-radius: 14px;
+        border: 1px dashed #f0ba9f;
+        background: #fff4ee;
+        padding: 16px;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .promo b {
+        color: #9f370d;
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 920px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 600px) {
+        body {
+          padding: 14px;
+        }
+
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .nav {
+          gap: 14px;
+          font-size: 0.95rem;
+        }
+
+        .hero,
+        .products {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .promo {
+          margin-left: 18px;
+          margin-right: 18px;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="brand">StrideLab</div>
+        <nav class="nav" aria-label="Main Navigation">
+          <a href="#">Men</a>
+          <a href="#">Women</a>
+          <a href="#">New Arrivals</a>
+          <a href="#">Sale</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="kicker">Urban Performance Footwear</span>
+          <h1>MOVE FAST. LOOK SHARP.</h1>
+          <p>
+            Discover lightweight daily runners, premium street sneakers, and
+            all-day comfort soles. Built for hustle, designed for style.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#">Shop Collection</a>
+            <a class="btn secondary" href="#">View Lookbook</a>
+          </div>
+        </div>
+
+        <article class="hero-card" aria-label="Featured Product">
+          <h2>Nimbus Flyknit X1</h2>
+          <p>
+            Engineered mesh upper with responsive foam cushioning for city runs
+            and daily wear.
+          </p>
+          <span class="price">$129</span>
+        </article>
+      </section>
+
+      <section class="products" aria-label="Trending Shoes">
+        <h3>Trending This Week</h3>
+        <div class="grid">
+          <article class="card">
+            <strong>Pulse Runner 2.0</strong>
+            <span>Breathable knit • Neutral support • $110</span>
+          </article>
+          <article class="card">
+            <strong>Street Arc Low</strong>
+            <span>Leather blend • Retro court style • $95</span>
+          </article>
+          <article class="card">
+            <strong>CloudStride Max</strong>
+            <span>Chunky sole • Extra cushioning • $140</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="promo" aria-label="Discount Banner">
+        <p>
+          <b>Weekend Drop:</b> Get 20% off orders over $150 with code RUN20.
+        </p>
+        <a class="btn primary" href="#">Claim Offer</a>
+      </section>
+    </div>
+  </body>
+</html>
